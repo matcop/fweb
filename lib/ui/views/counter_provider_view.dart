@@ -6,12 +6,15 @@ import 'package:bases_web/ui/shared/n_button.dart';
 import 'package:flutter/material.dart';
 
 class CounterProviderView extends StatelessWidget {
-  const CounterProviderView({Key? key}) : super(key: key);
+  final String base;
+
+  const CounterProviderView({Key? key, required this.base}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (_) => CounterProvider(), child: _CounterProviderPageView());
+        create: (_) => CounterProvider(this.base),
+        child: _CounterProviderPageView());
   }
 }
 

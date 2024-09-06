@@ -10,22 +10,22 @@ class Flurorouter {
   static void configureRoutes() {
     router.define('/',
         handler: _counterHandler,
-        transitionDuration: Duration(microseconds: 3000),
+        transitionDuration: const Duration(microseconds: 3000),
         transitionType: TransitionType.fadeIn);
 
     router.define('/stateful',
-        transitionDuration: Duration(microseconds: 3000),
+        transitionDuration: const Duration(microseconds: 3000),
         handler: _counterHandler,
         transitionType: TransitionType.fadeIn);
 
     router.define('/stateful/:base',
-        transitionDuration: Duration(microseconds: 3000),
+        transitionDuration: const Duration(microseconds: 3000),
         handler: _counterHandler,
         transitionType: TransitionType.fadeIn);
 
     router.define('/provider',
         handler: _counterProviderHandler,
-        transitionDuration: Duration(microseconds: 3000),
+        transitionDuration: const Duration(microseconds: 3000),
         transitionType: TransitionType.fadeIn);
 
     router.notFoundHandler = _pageNotFound;
@@ -42,7 +42,10 @@ class Flurorouter {
   });
 
   static Handler _counterProviderHandler =
-      Handler(handlerFunc: (context, params) => CounterProviderView());
+      Handler(handlerFunc: (context, params) {
+    print(params);
+    return CounterProviderView(base: params['q']?[0] ?? '10');
+  });
 
   static Handler _pageNotFound = Handler(handlerFunc: (_, __) => View404());
 }
