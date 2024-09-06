@@ -16,21 +16,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: true,
-        title: 'Rutas App',
-        initialRoute: '/',
-        // routes: {
-        //   '/stateful': (_) => CounterPage(),
-        //   '/provider': (_) => const CounterProviderPage()
-        // },
-        // onGenerateRoute: RouteGenerator.generateRoute,
+      debugShowCheckedModeBanner: true,
+      title: 'Rutas App',
+      initialRoute: '/',
+      // routes: {
+      //   '/stateful': (_) => CounterPage(),
+      //   '/provider': (_) => const CounterProviderPage()
+      // },
+      // onGenerateRoute: RouteGenerator.generateRoute,
 
-        onGenerateRoute: Flurorouter.router.generator,
-        navigatorKey: locator<NavigationService>().navigatorKey,
-        builder: (_, child) {
-          return MainLayoutPage(child: child ?? Container());
-        }
-        //home: Container()
-        );
+      onGenerateRoute: Flurorouter.router.generator,
+      navigatorKey: locator<NavigationService>().navigatorKey,
+      builder: (_, child) {
+        return MainLayoutPage(child: child ?? Container());
+      },
+      theme: ThemeData.light().copyWith(scaffoldBackgroundColor: Colors.white),
+      //home: Container()
+    );
   }
 }
