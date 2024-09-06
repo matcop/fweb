@@ -24,7 +24,7 @@ class View404 extends StatelessWidget {
           NButton(
               text: 'volver',
               onPressed: () => Navigator.pushNamed(context, '/stateful'),
-              type: 2)
+              type: 1)
         ],
       ),
     );

@@ -28,6 +28,11 @@ class Flurorouter {
         transitionDuration: const Duration(microseconds: 3000),
         transitionType: TransitionType.fadeIn);
 
+    router.define('/dashboard/users/:userid/:rolesid',
+        handler: _dashboardUserHandler,
+        transitionDuration: const Duration(microseconds: 3000),
+        transitionType: TransitionType.fadeIn);
+
     router.notFoundHandler = _pageNotFound;
   }
 
@@ -45,6 +50,12 @@ class Flurorouter {
       Handler(handlerFunc: (context, params) {
     print(params);
     return CounterProviderView(base: params['q']?[0] ?? '10');
+  });
+
+  static Handler _dashboardUserHandler =
+      Handler(handlerFunc: (context, params) {
+    print(params);
+    return const View404();
   });
 
   static Handler _pageNotFound = Handler(handlerFunc: (_, __) => View404());
