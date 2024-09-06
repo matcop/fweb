@@ -1,4 +1,5 @@
 import 'package:bases_web/ui/views/counter_view.dart';
+import 'package:bases_web/ui/views/view_404.dart';
 import 'package:fluro/fluro.dart';
 
 import '../ui/views/counter_provider_view.dart';
@@ -21,6 +22,8 @@ class Flurorouter {
         handler: _counterProviderHandler,
         transitionDuration: Duration(microseconds: 3000),
         transitionType: TransitionType.fadeIn);
+
+    router.notFoundHandler = _pageNotFound;
   }
 
   //handlers
@@ -30,4 +33,6 @@ class Flurorouter {
 
   static Handler _counterProviderHandler =
       Handler(handlerFunc: (context, params) => CounterProviderView());
+
+  static Handler _pageNotFound = Handler(handlerFunc: (_, __) => View404());
 }
