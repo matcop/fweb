@@ -13,7 +13,7 @@ class Flurorouter {
         transitionDuration: Duration(microseconds: 3000),
         transitionType: TransitionType.fadeIn);
 
-    router.define('/stateful',
+    router.define('/stateful/:base',
         transitionDuration: Duration(microseconds: 3000),
         handler: _counterHandler,
         transitionType: TransitionType.fadeIn);
@@ -28,8 +28,12 @@ class Flurorouter {
 
   //handlers
 
-  static Handler _counterHandler =
-      Handler(handlerFunc: (context, params) => CounterView());
+  static Handler _counterHandler = Handler(handlerFunc: (context, params) {
+    print(params['base']
+        ?[0]); // asi se accederia a la var definida en la ruta de tipo arreglo
+
+    return CounterView();
+  });
 
   static Handler _counterProviderHandler =
       Handler(handlerFunc: (context, params) => CounterProviderView());
